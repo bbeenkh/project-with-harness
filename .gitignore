@@ -1,3 +1,6 @@
 node_modules/
-dist/
+**/dist/
 apps/backend/db.json
+.DS_Store
+.env
+.env.*
