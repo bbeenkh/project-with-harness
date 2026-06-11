@@ -1,5 +1,6 @@
 {
   "name": "project-with-harness",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "concurrently \"pnpm -F frontend dev\" \"pnpm -F backend dev\"",
