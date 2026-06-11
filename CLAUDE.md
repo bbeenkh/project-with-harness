@@ -2,6 +2,100 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+# 작업 순서: 신규 작업 시, 반드시 다음 플로우를 준수하여 작업 진행할 것
+1. 기획&요구사항 정리
+- atlassian mcp 사용해 Jira 접근하여 기획 확인
+- 전반적 작업 내용은 jira에서 확인
+- 브랜치 명은 티켓 이름을 그대로 사용
+
+<!-- - 세부 기획, 제약사항 등은 confluence에서 확인(현재 세팅 안되었으므로 무시)
+  - PDR: 기획 및 제약사항 어떻게, 어째서 했는지를 정리하는 문서
+  - ADR: 특정 기술 도입 결정을 왜 하였는지 정리하는 문서 -->
+
+2. 디자인: stitch mcp 사용해 화면, ui배치 구성
+- 반드시 존재하는 디자인 시스템 기반으로 제작할것, 새로 제작 필요할시는 별도 생성 질문후 진행
+
+3. 개발: Jira, confluence, stitch mcp 통해 작업사항 바탕으로 하여  작업내용 파악
+- 개발 과정은 red green refactor 원칙 기반 TDD로 작업 진행할 것
+- superpowers의 brainstorming skill 사용하여 기획 구체화 진행
+- 커밋 메세지: 내용은 전부 한글로 작성할것
+
+- 개발 방법론: superpowers의 test-driven-development skill 사용하여 TDD로 진행
+1. 테스트 desc 작성, 작성후 검토 요청하기
+2. 구현하려는 기능의 테스트 작성 
+3. 테스트를 통과시키는 최소한의 코드 작성
+4. 리팩토링 및 개선
+
+- 폴더 구조: fsd 패턴 사용하여 구조적으로 정리
+규칙
+폴더 구조: 레이어, 슬라이스, 세그먼트로 분류됨
+
+레이어: fsd에서 정의된 폴더 분류
+App: 최상위 app.tsx, provider, router 등 최상위 설정들
+Pages; 개별 페이지 정의, 비즈니스 로직보다는 사용자 인터페이스 관련 로직만 관리
+widgets: 페이지 내 독립적으로 작동하는 기능 관리, 다양한 페이지에서 재사용 가능 (ui): template
+Features: 재사용 가능한 비즈니스 기능 위한 레이어, 재사용 가능한 ui+비즈니스 로직: organisms
+Entities: 데이터 모델, 데이터에 대한 로직, 사용자 정보 관리 store, interface 정의
+Shared: 공용 ui, 유틸 순수함수들-슬라이스 없이 세그먼트만 있음: atoms, molecules
+
+슬라이스: 레이어의 컨텍스트별 폴더, 각 도메인에 대한 폴더명 구성
+- index.ts: 해당 슬라이스에서 사용가능한 모든 기능 리턴, 구체적인 경로 몰라도 import 가능함
+세그먼트: 컨텍스트별 세부 내용, 아래 디렉토리로 구별되나 커스터마이징 가능
+    - Model: 상태관리, 비즈니스로직, 데이터 상태 저장및 관리
+    - Ui: 각 기능에 대한 UI
+    - api: 각 api 요청에 대한 코드 작성 (rq useQuery, useMutation hoook)
+    - Lib: 유틸 순수함수
+    - Types: interface, type
+
+
+레이어는 반드시 자신의 하위요소만 참조해야 함
+각 세그먼트의 폴더명은 컨벤션은 있으나 임의 변경 가능
+
+
+
+
+
+- 중요!: Jsdoc 작성
+- 각 작성한 요소의 스펙에 대해 jsdoc 형식의 간단 문서를 작성해야 한다
+- 한국어로 작성하며, 함수, 변수, 클래스 등의 경우 요소 바로 위에 작성한다
+
+- 아래의 양식에 따라 작성한다
+/** 
+ * # 컴포넌트/함수/클래스 이름
+   ---
+ * - 간단설명: 무슨역할인지 1줄로 설명
+   - 제약사항 및 특이사항: 있으면 목록별로 나열
+   ---
+   @param: 쿼리파라미터
+   ex) @param children react children
+   ---
+ * @example: 간단예제
+ * 
+ */
+ 
+- type, interface, enum의 경우, jsdoc은 다음과 같은 형태로 작성한다
+/**
+ * 도서 검색 목록 정렬 기준
+ * - ACCURACY = 정확도순
+ * - LATEST = 발간일순
+ */
+export enum FETCH_BOOK_SORT {
+	/** 정확도순 */
+  ACCURACY = "accuracy",
+  /** 발간일순 */
+  LATEST = "latest",
+}
+
+
+4. 작업 마무리 및 PR
+- 티켓 검토중으로 작업상태 변경
+- 각 테스트 진행후 PR 
+- AI 가 기본 내용 검토
+- 사용자가 최종 검토
+ 
+
+- commit 메세지는 한국어로만 작성할 것
+
 ## Commands
 
 ```bash
@@ -42,66 +136,8 @@ Database: `src/db.ts` initializes lowdb with file `db.json` (git-ignored). Schem
 - `tsconfig.base.json` — strict, ES2022, bundler module resolution; extended by both apps
 - `eslint.config.js` — ESLint 9 flat config; `typescript-eslint` scoped to `apps/`, `react-hooks` plugin for frontend files
 
-## 프로젝트 기획: 여행 예약 간단 프로젝트
+# 디자인
+stitch MCP 활용해 디자인시스템 및 UI 파악할 것
+https://stitch.withgoogle.com/projects/13318352752179312516?pli=1
 
-### 개요
-사용자가 여행지를 검색하고 숙소/항공편을 예약할 수 있는 간단한 웹 애플리케이션.
-
-### 주요 기능
-
-**사용자 기능**
-- 여행지 검색 (도시/국가명 입력)
-- 숙소 목록 조회 및 상세 보기
-- 예약 생성 / 조회 / 취소
-- 예약 내역 확인 페이지
-
-**관리 기능 (백엔드 API)**
-- 숙소 데이터 CRUD
-- 예약 데이터 CRUD
-- 예약 가능 여부 확인
-
-### 데이터 모델
-
-```typescript
-// 숙소 (Accommodation)
-{
-  id: number
-  name: string         // 숙소명
-  location: string     // 도시/국가
-  pricePerNight: number
-  available: boolean
-}
-
-// 예약 (Booking)
-{
-  id: number
-  accommodationId: number
-  guestName: string
-  checkIn: string      // YYYY-MM-DD
-  checkOut: string     // YYYY-MM-DD
-  status: 'confirmed' | 'cancelled'
-}
-```
-
-### API 설계 (Hono 백엔드 확장)
-
-| Method | Path | 설명 |
-|--------|------|------|
-| GET | /accommodations | 전체 숙소 목록 |
-| GET | /accommodations/:id | 숙소 상세 |
-| POST | /accommodations | 숙소 추가 |
-| GET | /bookings | 전체 예약 목록 |
-| POST | /bookings | 예약 생성 |
-| PATCH | /bookings/:id/cancel | 예약 취소 |
-
-### 프론트엔드 화면 구성 (React)
-
-1. **홈** — 여행지 검색창 + 숙소 카드 목록
-2. **숙소 상세** — 이미지, 가격, 예약 폼
-3. **예약 확인** — 예약 번호 입력 후 내역 조회
-
-### 기술 스택
-현재 모노레포 구조 그대로 활용:
-- Frontend: React 19 + Vite (라우팅은 React Router 추가 예정)
-- Backend: Hono 4 + lowdb (기존 구조 확장)
-- 스타일: Tailwind CSS 추가 예정
+PDR: /docs/pdr/v1.md 참고
