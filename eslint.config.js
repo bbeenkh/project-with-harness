@@ -4,15 +4,9 @@ import reactHooks from 'eslint-plugin-react-hooks'
 
 export default tseslint.config(
   js.configs.recommended,
-  ...tseslint.configs.recommended,
   {
     files: ['apps/**/*.{ts,tsx}'],
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
+    extends: [...tseslint.configs.recommended],
   },
   {
     files: ['apps/frontend/**/*.tsx'],
