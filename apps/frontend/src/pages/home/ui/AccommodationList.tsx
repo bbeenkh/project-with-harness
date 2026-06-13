@@ -23,9 +23,9 @@ interface Props {
 export default function AccommodationList({ data, isLoading, isError }: Props) {
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
         {[0, 1, 2].map((i) => (
-          <Skeleton.Box key={i} styleClass={{ root: 'w-full h-32' }} />
+          <Skeleton.Box key={i} styleClass={{ root: 'w-full aspect-[4/3] rounded-xl' }} />
         ))}
       </div>
     )
@@ -33,12 +33,14 @@ export default function AccommodationList({ data, isLoading, isError }: Props) {
 
   if (isError) {
     return (
-      <p className="text-center text-gray-500 py-8">숙소 목록을 불러오지 못했습니다</p>
+      <p className="text-center font-inter text-body-md text-surface-on-variant py-8">
+        숙소 목록을 불러오지 못했습니다
+      </p>
     )
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
       {data?.map((item) => (
         <AccommodationCard key={item.id} accommodation={item} />
       ))}

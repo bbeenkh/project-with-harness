@@ -45,9 +45,9 @@ describe('HomePage', () => {
     })
   })
 
-  it('인기 도시 칩 5개가 표시된다', () => {
+  it('인기 도시 칩 6개가 표시된다', () => {
     renderWithQuery()
-    ;['서울', '부산', '제주', '강릉', '경주'].forEach((city) => {
+    ;['서울', '제주', '도쿄', '파리', '뉴욕', '런던'].forEach((city) => {
       expect(screen.getByText(city)).toBeInTheDocument()
     })
   })

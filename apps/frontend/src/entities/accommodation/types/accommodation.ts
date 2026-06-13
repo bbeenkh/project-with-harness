@@ -5,6 +5,9 @@
  * - location: 도시명
  * - pricePerNight: 1박 가격 (원)
  * - available: 예약 가능 여부
+ * - rating: 평점 (0~5, optional)
+ * - imageUrl: 대표 이미지 URL (optional)
+ * - amenities: 편의시설 목록, 첫 번째 항목이 카드 뱃지로 표시 (optional)
  */
 export interface Accommodation {
   /** 숙소 고유 ID */
@@ -17,6 +20,12 @@ export interface Accommodation {
   pricePerNight: number
   /** 예약 가능 여부 */
   available: boolean
+  /** 평점 (0~5) */
+  rating?: number
+  /** 대표 이미지 URL */
+  imageUrl?: string
+  /** 편의시설 목록 (첫 번째 항목이 카드 뱃지로 표시됨) */
+  amenities?: string[]
 }
 
 /**
