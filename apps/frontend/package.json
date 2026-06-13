@@ -14,8 +14,15 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.16",
+    "@radix-ui/react-separator": "^1.1.9",
+    "@radix-ui/react-slot": "^1.2.5",
+    "@radix-ui/react-toast": "^1.2.16",
+    "classnames": "^2.5.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-error-boundary": "^6.1.2",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
