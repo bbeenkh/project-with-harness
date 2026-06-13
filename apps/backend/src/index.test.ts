@@ -162,3 +162,43 @@ describe('GET /bookings/:bookingNumber', () => {
     expect(body.error).toBeDefined()
   })
 })
+
+describe('PATCH /bookings/:id/cancel', () => {
+  beforeEach(() => {
+    db.data.bookings = [
+      {
+        id: 100,
+        bookingNumber: 'V-CANC-TEST',
+        accommodationId: 1,
+        guestName: '홍길동',
+        checkIn: '2026-07-01',
+        checkOut: '2026-07-03',
+        status: 'confirmed',
+        totalPrice: 300000,
+      },
+    ]
+  })
+
+  it('정상 취소: 200과 업데이트된 예약 객체를 반환한다', async () => {
+    const res = await app.request('/bookings/100/cancel', { method: 'PATCH' })
+    expect(res.status).toBe(200)
+    const body = await res.json()
+    expect(body.status).toBe('cancelled')
+    expect(body.id).toBe(100)
+  })
+
+  it('이미 취소된 예약은 400을 반환한다', async () => {
+    db.data.bookings[0].status = 'cancelled'
+    const res = await app.request('/bookings/100/cancel', { method: 'PATCH' })
+    expect(res.status).toBe(400)
+    const body = await res.json()
+    expect(body.error).toBeDefined()
+  })
+
+  it('없는 id이면 404를 반환한다', async () => {
+    const res = await app.request('/bookings/999/cancel', { method: 'PATCH' })
+    expect(res.status).toBe(404)
+    const body = await res.json()
+    expect(body.error).toBeDefined()
+  })
+})
