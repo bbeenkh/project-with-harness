@@ -1,0 +1,72 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#006a62',
+          container: '#00a699',
+          fixed: '#7af7e8',
+          'fixed-dim': '#5bdacc',
+          on: '#ffffff',
+          'on-container': '#00332f',
+          'on-fixed': '#00201d',
+          'on-fixed-variant': '#005049',
+          inverse: '#5bdacc',
+        },
+        secondary: {
+          DEFAULT: '#b52330',
+          container: '#ff5a5f',
+          fixed: '#ffdad8',
+          'fixed-dim': '#ffb3b0',
+          on: '#ffffff',
+          'on-container': '#60000e',
+          'on-fixed': '#410007',
+          'on-fixed-variant': '#92001b',
+        },
+        tertiary: {
+          DEFAULT: '#006874',
+          container: '#44a1ae',
+          fixed: '#97f0ff',
+          'fixed-dim': '#7ad4e2',
+          on: '#ffffff',
+          'on-container': '#003339',
+          'on-fixed': '#001f24',
+          'on-fixed-variant': '#004f57',
+        },
+        error: {
+          DEFAULT: '#ba1a1a',
+          container: '#ffdad6',
+          on: '#ffffff',
+          'on-container': '#93000a',
+        },
+        surface: {
+          DEFAULT: '#fbf9f8',
+          dim: '#dbd9d9',
+          bright: '#fbf9f8',
+          'container-lowest': '#ffffff',
+          'container-low': '#f5f3f3',
+          container: '#f0eded',
+          'container-high': '#eae8e7',
+          'container-highest': '#e4e2e2',
+          variant: '#e4e2e2',
+          tint: '#006a62',
+          on: '#1b1c1c',
+          'on-variant': '#3c4947',
+          inverse: '#303030',
+          'inverse-on': '#f2f0f0',
+        },
+        outline: {
+          DEFAULT: '#6c7a77',
+          variant: '#bbc9c6',
+        },
+        background: {
+          DEFAULT: '#fbf9f8',
+          on: '#1b1c1c',
+        },
+      },
+    },
+  },
+  plugins: [],
+}
