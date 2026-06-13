@@ -130,3 +130,35 @@ describe('POST /bookings', () => {
     expect(body.error).toBeDefined()
   })
 })
+
+describe('GET /bookings/:bookingNumber', () => {
+  beforeEach(() => {
+    db.data.bookings = [
+      {
+        id: 1,
+        bookingNumber: 'V-TEST-1234',
+        accommodationId: 1,
+        guestName: '홍길동',
+        checkIn: '2026-07-01',
+        checkOut: '2026-07-03',
+        status: 'confirmed',
+        totalPrice: 300000,
+      },
+    ]
+  })
+
+  it('존재하는 bookingNumber이면 예약 객체를 반환한다', async () => {
+    const res = await app.request('/bookings/V-TEST-1234')
+    expect(res.status).toBe(200)
+    const body = await res.json()
+    expect(body.bookingNumber).toBe('V-TEST-1234')
+    expect(body.guestName).toBe('홍길동')
+  })
+
+  it('없는 bookingNumber이면 404를 반환한다', async () => {
+    const res = await app.request('/bookings/V-NONE-0000')
+    expect(res.status).toBe(404)
+    const body = await res.json()
+    expect(body.error).toBeDefined()
+  })
+})
