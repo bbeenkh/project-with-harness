@@ -15,30 +15,21 @@ interface ProviderProps {
 }
 
 /**
- * # Toast.Provider UI
+ * # Toast
  * ---
- * - 간단설명: Radix UI Toast 기반 알림 메시지 컴포넌트
- * - `open` / `onOpenChange` / `message` prop으로 외부에서 상태를 직접 제어한다
- * - `children` 하위에 Viewport가 렌더링되므로 앱 루트에서 감싸서 사용한다
- * - 기본 스타일 없음 — 모든 스타일은 `styleClass`로 주입
+ * - 간단설명: 예약 성공/실패 등 짧은 알림을 화면에 표시
+ * - 제약사항: Toast.Provider로 앱 루트를 감싸야 사용 가능. styleClass.root로 success/error 스타일 구분
  * ---
  * @param children 앱 콘텐츠
  * @param open 토스트 열림 여부
- * @param onOpenChange 토스트 상태 변경 콜백 `(open: boolean) => void`
- * @param message 표시할 메시지 텍스트
+ * @param onOpenChange 상태 변경 콜백
+ * @param message 표시할 메시지
  * @param styleClass 커스텀 스타일 클래스 객체
- * - `styleClass.root`: Toast.Root에 적용할 클래스
- * - `styleClass.viewport`: Toast.Viewport에 적용할 클래스
+ * - `styleClass.root` - 기본: bg-[#1B1C1C] text-white rounded-xl px-4 py-3
+ * - `styleClass.viewport` - Toast.Viewport에 적용할 클래스
+ * ---
  * @example
- * <Toast.Provider
- *   open={isOpen}
- *   onOpenChange={setIsOpen}
- *   message={toastMessage}
- *   styleClass={{
- *     root: 'bg-gray-800 text-white px-4 py-2 rounded shadow-lg',
- *     viewport: 'fixed bottom-4 right-4 flex flex-col gap-2',
- *   }}
- * >
+ * <Toast.Provider open={isOpen} onOpenChange={setIsOpen} message="예약 완료!" styleClass={{ root: 'bg-[#006A62] text-white rounded-xl px-4 py-3', viewport: 'fixed bottom-4 right-4 flex flex-col gap-2 z-50' }}>
  *   <App />
  * </Toast.Provider>
  */
