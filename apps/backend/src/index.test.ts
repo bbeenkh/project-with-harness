@@ -81,3 +81,52 @@ describe('GET /accommodations/:id', () => {
     expect(body.error).toBeDefined()
   })
 })
+
+describe('POST /bookings', () => {
+  it('정상 요청이면 201과 예약 객체를 반환한다', async () => {
+    const res = await app.request('/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        accommodationId: 1,
+        guestName: '홍길동',
+        checkIn: '2026-07-01',
+        checkOut: '2026-07-03',
+      }),
+    })
+    expect(res.status).toBe(201)
+    const body = await res.json()
+    expect(body.bookingNumber).toMatch(/^V-[A-Z0-9]{4}-[A-Z0-9]{4}$/)
+    expect(body.status).toBe('confirmed')
+    expect(body.totalPrice).toBe(300000) // 150000 × 2박
+    expect(body.guestName).toBe('홍길동')
+  })
+
+  it('중복 일정이면 409를 반환한다', async () => {
+    db.data.bookings = [
+      {
+        id: 1,
+        bookingNumber: 'V-AAAA-BBBB',
+        accommodationId: 1,
+        guestName: '이미예약',
+        checkIn: '2026-07-01',
+        checkOut: '2026-07-05',
+        status: 'confirmed',
+        totalPrice: 600000,
+      },
+    ]
+    const res = await app.request('/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        accommodationId: 1,
+        guestName: '홍길동',
+        checkIn: '2026-07-03',
+        checkOut: '2026-07-07',
+      }),
+    })
+    expect(res.status).toBe(409)
+    const body = await res.json()
+    expect(body.error).toBeDefined()
+  })
+})
