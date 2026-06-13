@@ -64,3 +64,20 @@ describe('GET /accommodations', () => {
     expect(body[0].name).toBe('교토 전통 료칸')
   })
 })
+
+describe('GET /accommodations/:id', () => {
+  it('존재하는 id이면 숙소 객체를 반환한다', async () => {
+    const res = await app.request('/accommodations/1')
+    expect(res.status).toBe(200)
+    const body = await res.json()
+    expect(body.id).toBe(1)
+    expect(body.name).toBe('제주 오션뷰 펜션')
+  })
+
+  it('없는 id이면 404를 반환한다', async () => {
+    const res = await app.request('/accommodations/999')
+    expect(res.status).toBe(404)
+    const body = await res.json()
+    expect(body.error).toBeDefined()
+  })
+})
