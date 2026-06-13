@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "concurrently \"pnpm -F frontend dev\" \"pnpm -F backend dev\"",
     "build": "pnpm -r build",
+    "storybook": "pnpm -F frontend storybook",
     "lint": "eslint apps/",
     "prepare": "husky"
   },
