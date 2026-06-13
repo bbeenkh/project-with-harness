@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/mocks/browser.ts","./src/mocks/handlers.ts","./src/shared/ui/button/button.stories.tsx","./src/shared/ui/button/button.test.tsx","./src/shared/ui/button/button.tsx","./src/test/msw.test.ts","./src/test/setup.ts","./vite.config.ts"],"version":"5.9.3"}
