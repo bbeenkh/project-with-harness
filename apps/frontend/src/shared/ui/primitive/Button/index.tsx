@@ -1,45 +1,42 @@
-import React from 'react';
-import { Slot } from '@radix-ui/react-slot';
-
-interface StyleClass {
-  root?: string;
-}
-
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  type?: 'button' | 'submit' | 'reset';
-  styleClass?: StyleClass;
-  asChild?: boolean;
-}
+import type { ButtonHTMLAttributes } from 'react'
 
 /**
- * # Button UI
- * ---
- * - `styleClass.root`: 버튼 루트 요소에 적용할 Tailwind 클래스
- * - `asChild`: true 시 children 컴포넌트가 button을 대체 (Radix Slot 패턴)
- * - `type`: 버튼 타입 (기본값 `'button'`)
- * - 기본 스타일 없음 — 모든 스타일은 `styleClass`로 주입
- * ---
- * @param children 버튼 내부 콘텐츠
- * @param type 버튼 타입 (기본값: `'button'`)
- * @param styleClass 커스텀 스타일 클래스 객체
- * @param asChild true 시 children 컴포넌트로 button 대체 (Radix Slot 패턴)
- * @example
- * // 기본 버튼
- * <Button styleClass={{ root: 'bg-primary text-white px-4 py-2 rounded' }}>확인</Button>
- *
- * // asChild: Link 컴포넌트를 버튼처럼 렌더
- * <Button asChild styleClass={{ root: 'text-blue-500 underline' }}>
- *   <Link href="/about">About</Link>
- * </Button>
+ * # ButtonVariant
+ * - primary = 메인 액션 버튼 (스카이블루)
+ * - action = 긴급/예약 버튼 (코랄)
+ * - ghost = 보조 버튼 (투명 배경)
  */
-function Button({ children, type = 'button', styleClass, asChild = false, ...props }: Props) {
-  const Comp = asChild ? Slot : 'button';
-  return (
-    <Comp type={asChild ? undefined : type} className={styleClass?.root} {...props}>
-      {children}
-    </Comp>
-  );
-}
+export type ButtonVariant = 'primary' | 'action' | 'ghost'
 
-export default Button;
+/**
+ * # Button
+ * ---
+ * - 간단설명: Vibrant Horizon 디자인 시스템 기반 버튼 컴포넌트
+ * - 제약사항: variant 미지정 시 primary 적용
+ * ---
+ * @param children - 버튼 내부 콘텐츠
+ * @param variant - 버튼 스타일 (primary | action | ghost)
+ * @param onClick - 클릭 핸들러
+ * ---
+ * @example
+ * <Button variant="action" onClick={handleBook}>지금 예약</Button>
+ */
+export default function Button({
+  children,
+  variant = 'primary',
+  className = '',
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: ButtonVariant }) {
+  const base =
+    'px-4 py-2 rounded-xl font-semibold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed'
+  const variants: Record<ButtonVariant, string> = {
+    primary: 'bg-[#00A699] text-white hover:bg-[#006A62]',
+    action: 'bg-[#FF5A5F] text-white hover:opacity-90',
+    ghost: 'border border-[#00A699] text-[#00A699] bg-transparent hover:bg-[#E0F4F2]',
+  }
+  return (
+    <button className={`${base} ${variants[variant]} ${className}`} {...props}>
+      {children}
+    </button>
+  )
+}
