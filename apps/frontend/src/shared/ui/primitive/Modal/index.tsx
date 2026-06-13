@@ -23,28 +23,20 @@ export interface IModalProps extends React.ComponentProps<typeof Dialog.Root> {
 }
 
 /**
- * # Modal UI
+ * # Modal
  * ---
- * - 간단설명: Radix Dialog 기반 모달 컴포넌트
- * - `triggerUI`로 트리거 요소를 주입하거나, `open`/`onOpenChange`로 제어 모드로 사용
- * - 중첩 Dialog 내부 이벤트에 의한 의도치 않은 닫힘을 `userCloseIntentRef`로 방지
- * - `preventOutsideClose=true` 시 overlay 클릭, Escape 키로 닫히지 않음
+ * - 간단설명: 모바일 Bottom Sheet / 데스크탑 다이얼로그 역할의 모달
+ * - 제약사항: 모바일에서 하단 슬라이드업, 최대 높이 90vh
  * ---
- * @param triggerUI 트리거로 사용할 ReactNode (생략 시 비제어 모드)
- * @param size 모달 너비 `'md'`(600px) | `'lg'`(900px) | `'xl'`(1200px), 기본값 `'md'`
- * @param hideCloseButton true 시 우상단 닫기 버튼 숨김
- * @param overlayClassName overlay에 추가할 className
- * @param overlayZIndex overlay/content z-index (inline style로 적용)
- * @param preventOutsideClose true 시 외부 클릭·Escape로 닫히지 않음, 기본값 `false`
+ * @param open - 모달 열림 여부
+ * @param onOpenChange - 상태 변경 콜백
+ * @param triggerUI - 트리거 ReactNode (생략 시 controlled 모드)
+ * @param size - 모달 크기 'md' | 'lg' | 'xl'
+ * ---
  * @example
- * <Modal triggerUI={<Button>열기</Button>} size="lg">
- *   <Modal.Header>
- *     <Modal.Title>제목</Modal.Title>
- *   </Modal.Header>
- *   <Modal.Body>본문</Modal.Body>
- *   <Modal.Footer>
- *     <Button>닫기</Button>
- *   </Modal.Footer>
+ * <Modal open={isOpen} onOpenChange={setIsOpen}>
+ *   <Modal.Header><Modal.Title>날짜 선택</Modal.Title></Modal.Header>
+ *   <Modal.Body><DatePicker /></Modal.Body>
  * </Modal>
  */
 export default function Modal({
@@ -90,6 +82,7 @@ export default function Modal({
           onPointerDown={preventOutsideClose ? undefined : markCloseIntent}
         />
         <Dialog.Content
+          data-slot="modal-content"
           onEscapeKeyDown={preventOutsideClose ? undefined : markCloseIntent}
           onPointerDownOutside={(e) => {
             if (preventOutsideClose) {
@@ -100,10 +93,10 @@ export default function Modal({
           }}
           className={twMerge(
             'DialogContent relative flex flex-col gap-4 bg-white p-6',
-            'sm:w-[96vw] sm:max-w-[96vw] sm:h-[96vh] sm:max-h-[96vh] sm:p-4 sm:rounded-lg',
-            size === 'md' && 'w-[37.5rem] max-w-[37.5rem]',
-            size === 'lg' && 'w-[56.25rem] max-w-[56.25rem]',
-            size === 'xl' && 'w-[75rem] max-w-[80rem]',
+            'fixed bottom-0 left-0 right-0 rounded-t-3xl w-full max-h-[90vh] overflow-y-auto',
+            size === 'md' && 'sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:rounded-xl sm:w-[37.5rem] sm:max-w-[37.5rem]',
+            size === 'lg' && 'sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:rounded-xl sm:w-[56.25rem] sm:max-w-[56.25rem]',
+            size === 'xl' && 'sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:rounded-xl sm:w-[75rem] sm:max-w-[80rem]',
             className,
           )}
           style={overlayZIndex ? { zIndex: overlayZIndex } : undefined}
