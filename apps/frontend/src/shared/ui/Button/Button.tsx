@@ -1,9 +1,11 @@
+import type { ReactNode } from 'react'
+
 /**
  * # ButtonProps
  * - variant = 'primary' | 'secondary'
  */
 export interface ButtonProps {
-  children: React.ReactNode
+  children: ReactNode
   onClick?: () => void
   variant?: 'primary' | 'secondary'
 }
