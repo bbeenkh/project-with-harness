@@ -1,0 +1,14 @@
+/**
+ * # 전역 스타일 엔트리포인트
+ * ---
+ * - 간단설명: Google Fonts 로드 및 Tailwind CSS directives 주입
+ * - 제약사항 및 특이사항:
+ *   - Plus Jakarta Sans (headline): wght 400, 600, 700
+ *   - Inter (body): wght 400, 500, 600
+ *   - Tailwind directives 순서(base → components → utilities) 변경 금지
+ */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
