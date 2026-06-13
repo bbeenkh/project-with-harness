@@ -20,6 +20,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - superpowers의 brainstorming skill 사용하여 기획 구체화 진행
 - 커밋 메세지: 내용은 전부 한글로 작성할것
 
+worktree 활용: 1개의 작업마다 다음 subagent 구성하여 git worktree 사용해 병렬로 작업 진행, 각 작업 필요없으면 생략가능
+1. 현재 작업중인 브랜치에 다음 생성
+- [브랜치명]_API: API 연동, interface 작성 및 스펙 jsdoc작성
+- [브랜치명]_UI: 디자인 정보 받아서 UI 퍼블리싱 작업, 기존 컴포넌트 활용할것
+- [브랜치명]_TEST: 단위테스트 작성
+
+2. 위의 세 작업 완료 후 기존브랜치에 merge 후 나머지 작업 완료할 것
+
 - 개발 방법론: superpowers의 test-driven-development skill 사용하여 TDD로 진행
 1. 테스트 desc 작성, 작성후 검토 요청하기
 2. 구현하려는 기능의 테스트 작성 
