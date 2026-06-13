@@ -20,6 +20,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - superpowers의 brainstorming skill 사용하여 기획 구체화 진행
 - 커밋 메세지: 내용은 전부 한글로 작성할것
 
+### worktree 활용 (병렬 개발)
+1개의 작업마다 아래 서브에이전트 + worktree를 구성하여 병렬 진행. 불필요한 항목은 생략 가능.
+
+**브랜치 생성 순서 (의존성 반영):**
+1. `[브랜치명]_API` 먼저 시작 → interface/타입 정의, API 연동 코드, jsdoc 작성
+2. `[브랜치명]_UI` 는 _API의 타입 정의 완료 후 시작 → UI 퍼블리싱 (기존 컴포넌트 우선 활용)
+3. `[브랜치명]_TEST` 는 _API와 병렬 시작 가능 → 테스트 desc/케이스 먼저 작성 (TDD 원칙 유지)
+
+**완료 후:** 세 브랜치를 기존 브랜치에 순서대로 merge 후 나머지 작업 완료
+
+> 주의: _TEST는 구현 전 테스트를 먼저 작성해야 TDD 원칙과 일치함
+
 - 개발 방법론: superpowers의 test-driven-development skill 사용하여 TDD로 진행
 1. 테스트 desc 작성, 작성후 검토 요청하기
 2. 구현하려는 기능의 테스트 작성 
