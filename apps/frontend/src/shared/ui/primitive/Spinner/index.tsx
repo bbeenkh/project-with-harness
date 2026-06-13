@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { twJoin } from 'tailwind-merge';
-import SpinnerIcon from '@/assets/svgs/spinner-icon.svg?react';
+import SpinnerIcon from '../../assets/icons/spinner.svg?react';
 
 interface IProps {
   size?: 'xs' | 'sm' | 'lg' | 'xl';
@@ -8,20 +8,16 @@ interface IProps {
 }
 
 /**
- * # Spinner UI
+ * # Spinner
  * ---
- * - SVG 아이콘 기반 로딩 스피너 컴포넌트 (`animate-spin`)
- * - 부모 요소를 꽉 채우는 flex 컨테이너 내에서 중앙 정렬로 표시된다
+ * - 간단설명: 로딩 인디케이터 SVG 스피너
+ * - 제약사항: SVGR 설정 필요 (vite-plugin-svgr), spinner.svg 파일 존재 필요
  * ---
- * @param size - 스피너 크기 (기본값: `'lg'`)
- * - `'xs'`: 16×16px
- * - `'sm'`: 20×20px
- * - `'lg'`: 24×24px
- * - `'xl'`: 32×32px
- * @param className - SpinnerIcon SVG에 추가할 Tailwind 클래스
+ * @param size - 스피너 크기 (xs | sm | lg | xl), 기본값 lg
+ * @param className - 추가 Tailwind 클래스
+ * ---
  * @example
- * <Spinner size="sm" />
- * <Spinner size="xl" className="fill-blue-500" />
+ * <Spinner size="lg" />
  */
 export default function Spinner({ size = 'lg', className }: IProps) {
   /** 사이즈에 따른 css */
@@ -44,7 +40,7 @@ export default function Spinner({ size = 'lg', className }: IProps) {
     <div className="w-full h-full flex justify-center items-center">
       <SpinnerIcon
         className={twJoin(
-          'text-gray-200 animate-spin fill-black',
+          'animate-spin text-[#006A62]',
           sizeClassName,
           className,
         )}
