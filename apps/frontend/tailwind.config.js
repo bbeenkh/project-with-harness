@@ -1,3 +1,14 @@
+/**
+ * # Tailwind CSS 설정
+ * ---
+ * - 간단설명: Vibrant Horizon 디자인 시스템 토큰을 Tailwind CSS 커스텀 테마로 정의
+ * - 제약사항 및 특이사항:
+ *   - theme.extend 사용으로 Tailwind 기본값 유지
+ *   - 컬러: Vibrant Horizon 전체 팔레트 (primary, secondary, tertiary, error, surface, outline, background)
+ *   - 폰트: Plus Jakarta Sans (headline), Inter (body)
+ *   - 스페이싱: 8px 그리드 (xs~2xl)
+ *   - border-radius: sm 4px ~ xl 24px
+ */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
@@ -65,6 +76,28 @@ export default {
           DEFAULT: '#fbf9f8',
           on: '#1b1c1c',
         },
+      },
+      fontFamily: {
+        'plus-jakarta': ['"Plus Jakarta Sans"', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+      },
+      spacing: {
+        xs: '4px',
+        sm: '8px',
+        md: '16px',
+        lg: '24px',
+        xl: '32px',
+        '2xl': '48px',
+        gutter: '16px',
+        'margin-mobile': '20px',
+      },
+      borderRadius: {
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '12px',
+        lg: '16px',
+        xl: '24px',
+        full: '9999px',
       },
     },
   },
