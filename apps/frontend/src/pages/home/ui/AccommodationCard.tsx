@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import type { Accommodation } from '../../../entities/accommodation/types/accommodation'
 
 interface Props {
@@ -15,10 +16,14 @@ interface Props {
  * <AccommodationCard accommodation={item} />
  */
 export default function AccommodationCard({ accommodation }: Props) {
+  const navigate = useNavigate()
   const badge = accommodation.amenities?.[0]
 
   return (
-    <div className="bg-surface-container-lowest rounded-xl overflow-hidden card-shadow cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+    <div
+      className="bg-surface-container-lowest rounded-xl overflow-hidden card-shadow cursor-pointer transition-transform duration-300 hover:-translate-y-1"
+      onClick={() => navigate(`/accommodations/${accommodation.id}`)}
+    >
       {/* 이미지 영역 */}
       <div className="relative aspect-[4/3] overflow-hidden">
         {accommodation.imageUrl ? (
