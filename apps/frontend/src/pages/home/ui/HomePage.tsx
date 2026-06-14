@@ -58,25 +58,6 @@ export default function HomePage() {
         </section>
       </main>
 
-      {/* 하단 네비게이션 */}
-      <nav className="fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant">
-        <div className="flex justify-around items-center h-16 max-w-[1200px] mx-auto px-margin-mobile">
-          <button className="flex flex-col items-center gap-1 text-primary">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
-              home
-            </span>
-            <span className="font-inter text-label-sm">홈</span>
-          </button>
-          <button className="flex flex-col items-center gap-1 text-surface-on-variant">
-            <span className="material-symbols-outlined">calendar_month</span>
-            <span className="font-inter text-label-sm">내 예약</span>
-          </button>
-          <button className="flex flex-col items-center gap-1 text-surface-on-variant">
-            <span className="material-symbols-outlined">person</span>
-            <span className="font-inter text-label-sm">프로필</span>
-          </button>
-        </div>
-      </nav>
     </>
   )
 }
