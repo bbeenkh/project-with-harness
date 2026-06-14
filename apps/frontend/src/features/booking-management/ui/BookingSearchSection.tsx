@@ -43,7 +43,7 @@ export default function BookingSearchSection({ inputValue, onChange, onSearch, i
           onClick={onSearch}
           disabled={isLoading || !inputValue.trim()}
         >
-          🔍 조회
+          조회
         </Button>
       </div>
     </section>
