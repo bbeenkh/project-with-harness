@@ -23,6 +23,25 @@ const AMENITY_ICONS: Record<string, string> = {
   '바비큐': 'outdoor_grill',
 }
 
+/**
+ * 편의시설 이름 → 화면 표시용 라벨 매핑 (Stitch 디자인 기준)
+ */
+const AMENITY_DISPLAY: Record<string, string> = {
+  'Wi-Fi': '초고속 Wi-Fi',
+  '수영장': '전용 수영장',
+  '주차': '무료 주차',
+  '주방': '풀옵션 주방',
+  '에어컨': '에어컨',
+  '넷플릭스': '넷플릭스',
+  '피트니스': '피트니스 센터',
+  '스파': '전용 스파',
+  '레스토랑': '레스토랑',
+  '온천': '노천 온천',
+  '조식포함': '조식 포함',
+  '정원': '일본식 정원',
+  '바비큐': '바비큐 시설',
+}
+
 const INITIAL_COUNT = 6
 
 interface Props {
@@ -32,8 +51,8 @@ interface Props {
 /**
  * # AmenitiesList
  * ---
- * - 간단설명: 편의시설 아이콘 + 이름 그리드 (6개 초과 시 더보기 토글)
- * - 제약사항: 정의되지 않은 편의시설은 'check' 아이콘으로 표시
+ * - 간단설명: 편의시설 아이콘+라벨 2열 그리드 (6개 초과 시 "모두 보기" 아웃라인 버튼)
+ * - 제약사항: 정의되지 않은 편의시설은 'check' 아이콘 / 원본 이름으로 표시
  * ---
  * @param amenities - 편의시설 이름 목록
  * @example
@@ -42,29 +61,29 @@ interface Props {
 export default function AmenitiesList({ amenities }: Props) {
   const [expanded, setExpanded] = useState(false)
   const visible = expanded ? amenities : amenities.slice(0, INITIAL_COUNT)
-  const hiddenCount = amenities.length - INITIAL_COUNT
+  const hasMore = amenities.length > INITIAL_COUNT
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         {visible.map((amenity) => (
-          <div key={amenity} className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary" style={{ fontSize: '20px' }}>
+          <div key={amenity} className="flex items-center gap-3">
+            <span className="material-symbols-outlined text-primary" style={{ fontSize: '24px' }}>
               {AMENITY_ICONS[amenity] ?? 'check'}
             </span>
-            <span className="font-inter text-body-sm text-surface-on">{amenity}</span>
+            <span className="font-inter text-body-sm text-surface-on">
+              {AMENITY_DISPLAY[amenity] ?? amenity}
+            </span>
           </div>
         ))}
       </div>
-      {hiddenCount > 0 && (
+
+      {hasMore && (
         <button
           onClick={() => setExpanded((prev) => !prev)}
-          className="mt-4 flex items-center gap-1 font-inter text-body-sm text-primary underline underline-offset-2"
+          className="mt-5 w-full border border-outline text-surface-on font-inter text-body-sm font-medium py-3 rounded-xl hover:bg-surface-container-low transition-colors"
         >
-          <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
-            {expanded ? 'expand_less' : 'expand_more'}
-          </span>
-          {expanded ? '접기' : `+${hiddenCount}개 더보기`}
+          {expanded ? '접기' : `편의시설 ${amenities.length}개 모두 보기`}
         </button>
       )}
     </div>

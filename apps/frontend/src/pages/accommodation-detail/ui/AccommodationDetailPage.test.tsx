@@ -61,7 +61,8 @@ describe('AccommodationDetailPage', () => {
   it('편의시설 목록이 표시된다', async () => {
     renderWithProviders(1)
     await waitFor(() => {
-      expect(screen.getByText('수영장')).toBeInTheDocument()
+      // AmenitiesList는 '수영장' → '전용 수영장' 으로 표시명 변환
+      expect(screen.getByText('전용 수영장')).toBeInTheDocument()
     })
   })
 })

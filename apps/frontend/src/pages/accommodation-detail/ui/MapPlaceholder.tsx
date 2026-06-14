@@ -5,31 +5,41 @@ interface Props {
 /**
  * # MapPlaceholder
  * ---
- * - 간단설명: 지도 위치 더미 이미지 표시 (실제 지도 미구현)
+ * - 간단설명: 숙소 위치 더미 지도 (그라디언트 배경 + 핀 아이콘 + 위치 라벨 오버레이)
  * ---
- * @param location - 위치명 (하단 텍스트)
+ * @param location - 위치 텍스트 (지도 하단 라벨로 표시)
  * @example
  * <MapPlaceholder location="제주도 서귀포시" />
  */
 export default function MapPlaceholder({ location }: Props) {
   return (
-    <div>
-      <div className="w-full h-40 rounded-xl bg-surface-container-high flex items-center justify-center relative overflow-hidden">
+    <div className="relative rounded-xl overflow-hidden h-44">
+      {/* 더미 지도 배경 */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#c8ddd9] to-[#a8c5b5]">
         <div
           className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: 'linear-gradient(#006a6222 1px, transparent 1px), linear-gradient(90deg, #006a6222 1px, transparent 1px)',
+            backgroundImage:
+              'linear-gradient(#637b77 1px, transparent 1px), linear-gradient(90deg, #637b77 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
-        <div className="flex flex-col items-center gap-2">
-          <span className="material-symbols-outlined text-primary" style={{ fontSize: '32px', fontVariationSettings: "'FILL' 1" }}>
-            location_on
-          </span>
-          <span className="font-inter text-label-sm text-surface-on-variant">지도 (더미)</span>
-        </div>
       </div>
-      <p className="font-inter text-body-sm text-surface-on-variant mt-2">📍 {location}</p>
+
+      {/* 위치 핀 */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span
+          className="material-symbols-outlined text-primary drop-shadow-md"
+          style={{ fontSize: '48px', fontVariationSettings: "'FILL' 1" }}
+        >
+          location_on
+        </span>
+      </div>
+
+      {/* 위치 라벨 */}
+      <div className="absolute bottom-0 left-0 right-0 bg-black/40 px-4 py-2">
+        <span className="font-inter text-label-sm text-white">위치: {location}</span>
+      </div>
     </div>
   )
 }
