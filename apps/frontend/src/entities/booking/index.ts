@@ -1,2 +1,2 @@
 export type { Booking, CreateBookingInput } from './types/booking'
-export { createBooking, fetchBooking } from './api/bookingApi'
+export { createBooking, fetchBooking, cancelBooking } from './api/bookingApi'

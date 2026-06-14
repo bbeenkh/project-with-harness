@@ -34,7 +34,7 @@ export default function BookingBottomBar({ pricePerNight, accommodationId }: Pro
 
   if (confirmedBooking) {
     return (
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-outline-variant rounded-t-2xl shadow-2xl px-margin-mobile pt-5 pb-8">
+      <div className="fixed bottom-16 left-0 right-0 z-50 bg-white border-t border-outline-variant rounded-t-2xl shadow-2xl px-margin-mobile pt-5 pb-8">
         <div className="flex flex-col items-center gap-3 py-2">
           <div className="w-14 h-14 rounded-full bg-primary-container flex items-center justify-center">
             <span
@@ -65,7 +65,7 @@ export default function BookingBottomBar({ pricePerNight, accommodationId }: Pro
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-outline-variant rounded-t-2xl shadow-2xl px-margin-mobile pt-4 pb-8">
+    <div className="fixed bottom-16 left-0 right-0 z-50 bg-white border-t border-outline-variant rounded-t-2xl shadow-2xl px-margin-mobile pt-4 pb-8">
       {/* 가격 + 세부 정책 링크 */}
       <div className="flex items-baseline gap-1 mb-3">
         <span className="font-plus-jakarta text-headline-lg-mobile text-surface-on font-bold">
