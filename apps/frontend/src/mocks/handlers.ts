@@ -92,4 +92,22 @@ export const handlers = [
     mockBookings.push(booking)
     return HttpResponse.json(booking, { status: 201 })
   }),
+
+  http.get('http://localhost:3000/bookings/:bookingNumber', ({ params }) => {
+    const { bookingNumber } = params as { bookingNumber: string }
+    const booking = mockBookings.find((b) => b.bookingNumber === bookingNumber)
+    if (!booking) return HttpResponse.json({ error: '예약을 찾을 수 없습니다' }, { status: 404 })
+    return HttpResponse.json(booking)
+  }),
+
+  http.patch('http://localhost:3000/bookings/:id/cancel', ({ params }) => {
+    const id = Number(params.id)
+    const booking = mockBookings.find((b) => b.id === id)
+    if (!booking) return HttpResponse.json({ error: '예약을 찾을 수 없습니다' }, { status: 404 })
+    if (booking.status === 'cancelled') {
+      return HttpResponse.json({ error: '이미 취소된 예약입니다' }, { status: 400 })
+    }
+    booking.status = 'cancelled'
+    return HttpResponse.json(booking)
+  }),
 ]
