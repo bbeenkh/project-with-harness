@@ -5,3 +5,4 @@ apps/backend/db.json
 .env
 .env.*
 .worktrees/
+.superpowers/
