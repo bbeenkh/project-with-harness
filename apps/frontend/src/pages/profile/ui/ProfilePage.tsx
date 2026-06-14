@@ -39,9 +39,9 @@ export default function ProfilePage() {
 
       <div className="mt-lg">
         <SettingsSection title="개인 정보">
-          <SettingsItem icon="person" label="이름" value="김진서" />
-          <SettingsItem icon="mail" label="이메일" value="jinseo.kim@voyage.com" />
-          <SettingsItem icon="phone" label="전화번호" value="010-1234-5678" />
+          <SettingsItem icon="person" label="이름" value="김진서" vertical />
+          <SettingsItem icon="mail" label="이메일" value="jinseo.kim@voyage.com" vertical />
+          <SettingsItem icon="phone" label="전화번호" value="010-1234-5678" vertical />
         </SettingsSection>
 
         <SettingsSection title="환경 설정">
@@ -84,7 +84,7 @@ export default function ProfilePage() {
             type="button"
             className="font-inter text-body-sm text-[#b52330] hover:opacity-80 transition-opacity"
           >
-            계정 삭제
+            계정 탈퇴
           </button>
         </div>
       </div>

@@ -10,9 +10,11 @@
  * @param onClick - 클릭 핸들러
  * @param showChevron - chevron 아이콘 표시 여부, 기본값 true
  * @param labelColor - 라벨 색상 ('default' | 'danger'), 기본값 'default'
+ * @param vertical - true이면 라벨(소형 그레이)이 위, 값(굵게)이 아래로 세로 배치
  * ---
  * @example
  * <SettingsItem icon="person" label="이름" value="김진서" />
+ * <SettingsItem icon="person" label="이름" value="김진서" vertical />
  * <SettingsItem label="로그아웃" labelColor="danger" showChevron={false} />
  */
 export interface SettingsItemProps {
@@ -22,6 +24,7 @@ export interface SettingsItemProps {
   onClick?: () => void
   showChevron?: boolean
   labelColor?: 'default' | 'danger'
+  vertical?: boolean
 }
 
 export default function SettingsItem({
@@ -31,6 +34,7 @@ export default function SettingsItem({
   onClick,
   showChevron = true,
   labelColor = 'default',
+  vertical = false,
 }: SettingsItemProps) {
   return (
     <button
@@ -44,14 +48,21 @@ export default function SettingsItem({
             {icon}
           </span>
         )}
-        <span
-          className={`font-inter text-body-md ${labelColor === 'danger' ? 'text-[#b52330]' : 'text-on-surface'}`}
-        >
-          {label}
-        </span>
+        {vertical ? (
+          <div className="flex flex-col items-start gap-0.5">
+            <span className="font-inter text-label-sm text-on-surface-variant">{label}</span>
+            {value && <span className="font-inter text-body-md text-on-surface">{value}</span>}
+          </div>
+        ) : (
+          <span
+            className={`font-inter text-body-md ${labelColor === 'danger' ? 'text-[#b52330]' : 'text-on-surface'}`}
+          >
+            {label}
+          </span>
+        )}
       </div>
       <div className="flex items-center gap-xs">
-        {value && (
+        {!vertical && value && (
           <span className="font-inter text-body-sm text-on-surface-variant">{value}</span>
         )}
         {showChevron && (

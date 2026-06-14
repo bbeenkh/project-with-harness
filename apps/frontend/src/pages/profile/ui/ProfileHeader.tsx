@@ -19,7 +19,7 @@ export interface ProfileHeaderProps {
 
 export default function ProfileHeader({ name, joinedAt }: ProfileHeaderProps) {
   return (
-    <div className="flex flex-col items-center py-2xl px-gutter bg-white">
+    <div className="flex flex-col items-center py-2xl px-gutter">
       {/* 아바타 (120px, 흰색 border 4px, shadow) */}
       <div className="relative mb-3">
         <div
