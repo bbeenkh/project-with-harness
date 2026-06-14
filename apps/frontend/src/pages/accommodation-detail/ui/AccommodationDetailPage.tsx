@@ -70,7 +70,10 @@ export default function AccommodationDetailPage() {
                 </div>
               )}
             </div>
-            <p className="font-inter text-body-sm text-surface-on-variant">📍 {accommodation.location}</p>
+            <p className="font-inter text-body-sm text-surface-on-variant">
+              <span aria-hidden="true">📍 </span>
+              <span>{accommodation.location}</span>
+            </p>
           </div>
 
           <div className="h-px bg-outline-variant" />

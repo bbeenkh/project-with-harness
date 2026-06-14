@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { MemoryRouter } from 'react-router-dom'
 import HomePage from './HomePage'
 
 const mockAccommodations = [
@@ -31,7 +32,9 @@ const renderWithQuery = () => {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   return render(
     <QueryClientProvider client={queryClient}>
-      <HomePage />
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>
     </QueryClientProvider>
   )
 }

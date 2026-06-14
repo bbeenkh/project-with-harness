@@ -34,7 +34,7 @@ export const useBookingForm = (
 
   const { mutateAsync, isPending, error } = useMutation({
     mutationFn: () => createBooking({ accommodationId, guestName, checkIn, checkOut }),
-    onSuccess: options?.onSuccess,
+    onSuccess: (data) => options?.onSuccess?.(data),
   })
 
   const submit = async () => {
