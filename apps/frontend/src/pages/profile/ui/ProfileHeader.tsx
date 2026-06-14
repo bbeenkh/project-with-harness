@@ -20,17 +20,17 @@ export interface ProfileHeaderProps {
 export default function ProfileHeader({ name, joinedAt }: ProfileHeaderProps) {
   return (
     <div className="flex flex-col items-center py-2xl px-gutter bg-white">
-      {/* 아바타 */}
-      <div className="relative mb-md">
+      {/* 아바타 (120px, 흰색 border 4px, shadow) */}
+      <div className="relative mb-3">
         <div
           data-testid="avatar-placeholder"
-          className="w-24 h-24 rounded-full bg-surface-container-high border-2 border-primary-container flex items-center justify-center"
+          className="w-[120px] h-[120px] rounded-full bg-surface-container-high border-4 border-white shadow-md flex items-center justify-center"
         >
-          <span className="material-symbols-outlined text-on-surface-variant" style={{ fontSize: '48px' }}>
+          <span className="material-symbols-outlined text-on-surface-variant" style={{ fontSize: '56px' }}>
             person
           </span>
         </div>
-        {/* 수정 버튼 (FAB 스타일, Coral) */}
+        {/* 수정 버튼 (FAB 스타일, Coral, 32px) */}
         <button
           type="button"
           aria-label="프로필 수정"
@@ -42,11 +42,11 @@ export default function ProfileHeader({ name, joinedAt }: ProfileHeaderProps) {
         </button>
       </div>
 
-      {/* 이름 */}
-      <h1 className="font-plus-jakarta text-headline-md font-bold text-on-surface mb-xs">{name}</h1>
+      {/* 이름 (Bold, 다크 그레이) */}
+      <h1 className="font-plus-jakarta text-headline-md font-bold text-on-surface mb-1">{name}</h1>
 
-      {/* 가입일 */}
-      <p className="font-inter text-body-sm text-on-surface-variant">가입일: {joinedAt}</p>
+      {/* 가입일 (뮤트 그레이) */}
+      <p className="font-inter text-body-sm text-[#6b7280]">가입일: {joinedAt}</p>
     </div>
   )
 }

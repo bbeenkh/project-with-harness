@@ -36,7 +36,7 @@ export default function SettingsItem({
     <button
       type="button"
       onClick={onClick}
-      className="w-full flex items-center justify-between px-gutter py-md bg-white hover:bg-surface-container-lowest transition-colors"
+      className="w-full min-h-[56px] flex items-center justify-between px-gutter py-md bg-white hover:bg-surface-container-lowest transition-colors"
     >
       <div className="flex items-center gap-md">
         {icon && (

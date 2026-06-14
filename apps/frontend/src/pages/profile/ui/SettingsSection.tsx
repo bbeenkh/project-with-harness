@@ -27,7 +27,7 @@ export default function SettingsSection({ title, children }: SettingsSectionProp
           {title}
         </span>
       </div>
-      <div className="mx-gutter bg-white rounded-xl shadow-sm overflow-hidden divide-y divide-outline-variant">
+      <div className="mx-gutter bg-white rounded-lg shadow-sm overflow-hidden divide-y divide-outline-variant">
         {children}
       </div>
     </section>

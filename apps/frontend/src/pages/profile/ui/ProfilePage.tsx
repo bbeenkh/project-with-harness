@@ -25,7 +25,7 @@ export default function ProfilePage() {
         <button type="button" aria-label="메뉴" className="w-10 h-10 flex items-center justify-center">
           <span className="material-symbols-outlined text-on-surface" style={{ fontSize: '24px' }}>menu</span>
         </button>
-        <span className="font-plus-jakarta text-headline-md font-bold text-on-surface">프로필</span>
+        <span className="font-plus-jakarta text-headline-md font-bold text-primary">프로필</span>
         <button type="button" aria-label="검색" className="w-10 h-10 flex items-center justify-center">
           <span className="material-symbols-outlined text-on-surface" style={{ fontSize: '24px' }}>search</span>
         </button>
@@ -71,18 +71,18 @@ export default function ProfilePage() {
           />
         </SettingsSection>
 
-        {/* 하단 액션 */}
-        <div className="px-gutter mt-lg flex flex-col items-center gap-md">
+        {/* 하단 액션 — 보안 섹션에서 32px 여백 후 위치 */}
+        <div className="px-gutter mt-8 flex flex-col items-center gap-md pb-4">
           <button
             type="button"
-            className="w-full flex items-center justify-center gap-sm py-md rounded-xl border border-[#006a62] text-[#006a62] font-inter text-body-md font-semibold hover:bg-[#e0f4f2] transition-colors"
+            className="w-full flex items-center justify-center gap-sm py-md rounded-lg border border-[#dbd9d9] text-on-surface font-inter text-body-md hover:bg-surface-container-lowest transition-colors"
           >
-            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>logout</span>
+            <span className="material-symbols-outlined text-on-surface-variant" style={{ fontSize: '20px' }}>logout</span>
             로그아웃
           </button>
           <button
             type="button"
-            className="font-inter text-body-sm text-[#b52330] underline hover:opacity-80 transition-opacity"
+            className="font-inter text-body-sm text-[#b52330] hover:opacity-80 transition-opacity"
           >
             계정 삭제
           </button>
