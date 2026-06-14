@@ -35,7 +35,7 @@ export const fetchBooking = async (bookingNumber: string): Promise<Booking> => {
  * # cancelBooking
  * ---
  * - 간단설명: 예약 ID로 예약 취소
- * - 제약사항: 이미 취소된 예약이면 400 에러 반환
+ * - 제약사항: 이미 취소된 예약이면 400 에러 반환, 존재하지 않는 id는 404 에러 반환
  * ---
  * @param id - 예약 고유 ID
  * @example

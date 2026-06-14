@@ -71,7 +71,7 @@ describe('createBooking', () => {
 })
 
 describe('fetchBooking', () => {
-  const server = setupServer(
+  const fetchBookingServer = setupServer(
     http.get('http://localhost:3000/bookings/:bookingNumber', ({ params }) => {
       const { bookingNumber } = params as { bookingNumber: string }
       if (bookingNumber === 'V-K3F2-9ZAB') {
@@ -89,9 +89,9 @@ describe('fetchBooking', () => {
       return HttpResponse.json({ error: '예약을 찾을 수 없습니다' }, { status: 404 })
     })
   )
-  beforeAll(() => server.listen())
-  afterEach(() => server.resetHandlers())
-  afterAll(() => server.close())
+  beforeAll(() => fetchBookingServer.listen())
+  afterEach(() => fetchBookingServer.resetHandlers())
+  afterAll(() => fetchBookingServer.close())
 
   it('예약 번호로 예약을 조회하면 Booking 객체를 반환한다', async () => {
     const booking = await fetchBooking('V-K3F2-9ZAB')
@@ -106,7 +106,7 @@ describe('fetchBooking', () => {
 })
 
 describe('cancelBooking', () => {
-  const server = setupServer(
+  const cancelBookingServer = setupServer(
     http.patch('http://localhost:3000/bookings/:id/cancel', ({ params }) => {
       const id = Number(params.id)
       if (id === 1) {
@@ -124,9 +124,9 @@ describe('cancelBooking', () => {
       return HttpResponse.json({ error: '예약을 찾을 수 없습니다' }, { status: 404 })
     })
   )
-  beforeAll(() => server.listen())
-  afterEach(() => server.resetHandlers())
-  afterAll(() => server.close())
+  beforeAll(() => cancelBookingServer.listen())
+  afterEach(() => cancelBookingServer.resetHandlers())
+  afterAll(() => cancelBookingServer.close())
 
   it('예약 ID로 취소하면 status가 cancelled인 Booking을 반환한다', async () => {
     const booking = await cancelBooking(1)
