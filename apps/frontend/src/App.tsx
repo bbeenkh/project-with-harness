@@ -1,3 +1,12 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { HomePage } from './pages/home'
+
+const queryClient = new QueryClient()
+
 export default function App() {
-  return <h1>Hello from React + Vite</h1>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HomePage />
+    </QueryClientProvider>
+  )
 }

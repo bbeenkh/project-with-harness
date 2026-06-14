@@ -4,3 +4,4 @@ apps/backend/db.json
 .DS_Store
 .env
 .env.*
+.worktrees/

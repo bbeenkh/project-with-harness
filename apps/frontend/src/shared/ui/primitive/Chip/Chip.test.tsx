@@ -13,16 +13,16 @@ describe('Chip 컴포넌트', () => {
     expect(container.firstChild).toHaveClass('rounded-full')
   })
 
-  it('기본 상태에서 teal tint 배경이 적용된다', () => {
+  it('기본 상태에서 surface-container-high 배경이 적용된다', () => {
     const { container } = render(<Chip label="수영장" />)
-    expect(container.firstChild).toHaveClass('bg-[#E0F4F2]')
-    expect(container.firstChild).toHaveClass('text-[#006A62]')
+    expect(container.firstChild).toHaveClass('bg-surface-container-high')
+    expect(container.firstChild).toHaveClass('text-surface-on-variant')
   })
 
   it('active=true일 때 primary 배경이 적용된다', () => {
     const { container } = render(<Chip label="선택됨" active />)
-    expect(container.firstChild).toHaveClass('bg-[#006A62]')
-    expect(container.firstChild).toHaveClass('text-white')
+    expect(container.firstChild).toHaveClass('bg-primary')
+    expect(container.firstChild).toHaveClass('text-primary-on')
   })
 
   it('onClick 핸들러가 클릭 시 호출된다', () => {

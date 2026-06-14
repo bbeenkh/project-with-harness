@@ -11,9 +11,17 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
-  webServer: {
-    command: 'pnpm dev',
-    url: 'http://localhost:5173',
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: [
+    {
+      command: 'pnpm -F backend dev',
+      url: 'http://localhost:3000',
+      reuseExistingServer: !process.env.CI,
+      cwd: '../../',
+    },
+    {
+      command: 'pnpm dev',
+      url: 'http://localhost:5173',
+      reuseExistingServer: !process.env.CI,
+    },
+  ],
 })
