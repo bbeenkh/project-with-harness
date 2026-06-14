@@ -1,3 +1,4 @@
+import type { AxiosError } from 'axios'
 import { useBookingForm } from '../model/useBookingForm'
 import type { Booking } from '../../../entities/booking'
 import { Button } from '../../../shared/ui/primitive'
@@ -73,7 +74,7 @@ export default function BookingForm({ accommodationId, pricePerNight, onSuccess 
       )}
       {error && (
         <p className="font-inter text-label-sm text-error">
-          {(error as { response?: { data?: { error?: string } } })?.response?.data?.error ?? '예약 중 오류가 발생했습니다'}
+          {(error as AxiosError<{ error: string }>).response?.data?.error ?? '예약 중 오류가 발생했습니다'}
         </p>
       )}
       <Button
