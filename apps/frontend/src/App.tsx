@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/home'
 import { AccommodationDetailPage } from './pages/accommodation-detail'
 import { MyBookingsPage } from './pages/my-bookings'
+import { ProfilePage } from './pages/profile'
 import { BottomNav } from './widgets/bottom-nav'
 
 const queryClient = new QueryClient()
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/accommodations/:id" element={<AccommodationDetailPage />} />
           <Route path="/my-bookings" element={<MyBookingsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
         <BottomNav />
       </BrowserRouter>
