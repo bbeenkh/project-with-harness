@@ -6,15 +6,6 @@ const meta: Meta<typeof BottomNav> = {
   title: 'Widgets/BottomNav',
   component: BottomNav,
   tags: ['autodocs'],
-  decorators: [
-    (Story) => (
-      <div style={{ position: 'relative', height: '200px' }}>
-        <MemoryRouter initialEntries={['/']}>
-          <Story />
-        </MemoryRouter>
-      </div>
-    ),
-  ],
 }
 
 export default meta
