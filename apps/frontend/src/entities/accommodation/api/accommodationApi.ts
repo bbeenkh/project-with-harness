@@ -20,3 +20,18 @@ export const fetchAccommodations = async (params: AccommodationQuery): Promise<A
   })
   return data
 }
+
+/**
+ * # fetchAccommodationById
+ * ---
+ * - 간단설명: 숙소 단건 상세 조회 API 호출
+ * - 제약사항: 없는 id이면 404 에러 반환
+ * ---
+ * @param id - 숙소 ID
+ * @example
+ * const accommodation = await fetchAccommodationById(1)
+ */
+export const fetchAccommodationById = async (id: number): Promise<Accommodation> => {
+  const { data } = await axiosInstance.get<Accommodation>(`/accommodations/${id}`)
+  return data
+}

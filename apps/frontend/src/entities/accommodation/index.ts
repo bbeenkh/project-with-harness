@@ -1,2 +1,5 @@
 export { useAccommodations } from './model/useAccommodations'
+export { useAccommodation } from './model/useAccommodation'
+export { fetchAccommodationById } from './api/accommodationApi'
+export { fetchAccommodations } from './api/accommodationApi'
 export type { Accommodation, AccommodationQuery } from './types/accommodation'
