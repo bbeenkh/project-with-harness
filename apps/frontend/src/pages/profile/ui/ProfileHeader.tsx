@@ -19,7 +19,7 @@ export interface ProfileHeaderProps {
 
 export default function ProfileHeader({ name, joinedAt }: ProfileHeaderProps) {
   return (
-    <div className="flex flex-col items-center py-2xl px-gutter bg-surface-container-lowest">
+    <div className="flex flex-col items-center py-2xl px-gutter bg-white">
       {/* 아바타 */}
       <div className="relative mb-md">
         <div
@@ -30,20 +30,20 @@ export default function ProfileHeader({ name, joinedAt }: ProfileHeaderProps) {
             person
           </span>
         </div>
-        {/* 수정 버튼 */}
+        {/* 수정 버튼 (FAB 스타일, Coral) */}
         <button
           type="button"
           aria-label="프로필 수정"
-          className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow"
+          className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-[#ff5a5f] flex items-center justify-center shadow-md"
         >
-          <span className="material-symbols-outlined text-on-primary" style={{ fontSize: '16px' }}>
+          <span className="material-symbols-outlined text-white" style={{ fontSize: '16px' }}>
             edit
           </span>
         </button>
       </div>
 
       {/* 이름 */}
-      <h1 className="font-plus-jakarta text-headline-md text-on-surface mb-xs">{name}</h1>
+      <h1 className="font-plus-jakarta text-headline-md font-bold text-on-surface mb-xs">{name}</h1>
 
       {/* 가입일 */}
       <p className="font-inter text-body-sm text-on-surface-variant">가입일: {joinedAt}</p>

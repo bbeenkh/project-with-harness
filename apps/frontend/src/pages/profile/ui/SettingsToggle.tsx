@@ -20,7 +20,7 @@ export interface SettingsToggleProps {
 
 export default function SettingsToggle({ label, checked, onChange }: SettingsToggleProps) {
   return (
-    <label className="w-full flex items-center justify-between px-gutter py-md bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low transition-colors">
+    <label className="w-full flex items-center justify-between px-gutter py-md bg-white cursor-pointer hover:bg-surface-container-lowest transition-colors">
       <span className="font-inter text-body-md text-on-surface">{label}</span>
       <div className="relative">
         <input

@@ -19,10 +19,16 @@ export default function ProfilePage() {
   const [biometric, setBiometric] = useState(false)
 
   return (
-    <div className="pt-16 pb-16 bg-background min-h-screen">
-      {/* 앱바 */}
-      <header className="fixed top-0 w-full z-50 bg-surface shadow-sm flex items-center px-gutter h-16">
-        <span className="font-plus-jakarta text-headline-md text-on-surface">프로필</span>
+    <div className="pt-16 pb-20 bg-[#fbf9f8] min-h-screen">
+      {/* 탑 앱바 */}
+      <header className="fixed top-0 w-full z-50 bg-surface shadow-sm h-16 flex items-center justify-between px-gutter">
+        <button type="button" aria-label="메뉴" className="w-10 h-10 flex items-center justify-center">
+          <span className="material-symbols-outlined text-on-surface" style={{ fontSize: '24px' }}>menu</span>
+        </button>
+        <span className="font-plus-jakarta text-headline-md font-bold text-on-surface">프로필</span>
+        <button type="button" aria-label="검색" className="w-10 h-10 flex items-center justify-center">
+          <span className="material-symbols-outlined text-on-surface" style={{ fontSize: '24px' }}>search</span>
+        </button>
       </header>
 
       <ProfileHeader
@@ -33,14 +39,14 @@ export default function ProfilePage() {
 
       <div className="mt-lg">
         <SettingsSection title="개인 정보">
-          <SettingsItem label="이름" value="김진서" />
-          <SettingsItem label="이메일" value="jinseo.kim@voyage.com" />
-          <SettingsItem label="전화번호" value="010-1234-5678" />
+          <SettingsItem icon="person" label="이름" value="김진서" />
+          <SettingsItem icon="mail" label="이메일" value="jinseo.kim@voyage.com" />
+          <SettingsItem icon="phone" label="전화번호" value="010-1234-5678" />
         </SettingsSection>
 
         <SettingsSection title="환경 설정">
-          <SettingsItem label="언어" value="한국어" />
-          <SettingsItem label="통화" value="KRW" />
+          <SettingsItem icon="language" label="언어" value="한국어" />
+          <SettingsItem icon="currency_exchange" label="통화" value="KRW" />
         </SettingsSection>
 
         <SettingsSection title="알림 설정">
@@ -57,15 +63,30 @@ export default function ProfilePage() {
         </SettingsSection>
 
         <SettingsSection title="보안">
-          <SettingsItem label="비밀번호 변경" />
+          <SettingsItem icon="lock" label="비밀번호 변경" />
           <SettingsToggle
             label="생체 인증"
             checked={biometric}
             onChange={setBiometric}
           />
-          <SettingsItem label="로그아웃" labelColor="danger" showChevron={false} />
-          <SettingsItem label="계정 삭제" labelColor="danger" showChevron={false} />
         </SettingsSection>
+
+        {/* 하단 액션 */}
+        <div className="px-gutter mt-lg flex flex-col items-center gap-md">
+          <button
+            type="button"
+            className="w-full flex items-center justify-center gap-sm py-md rounded-xl border border-[#006a62] text-[#006a62] font-inter text-body-md font-semibold hover:bg-[#e0f4f2] transition-colors"
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>logout</span>
+            로그아웃
+          </button>
+          <button
+            type="button"
+            className="font-inter text-body-sm text-[#b52330] underline hover:opacity-80 transition-opacity"
+          >
+            계정 삭제
+          </button>
+        </div>
       </div>
     </div>
   )

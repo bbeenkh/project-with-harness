@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react'
-import Separator from '../../../shared/ui/primitive/Separator'
 
 /**
  * # SettingsSection
  * ---
- * - 간단설명: 설정 섹션 래퍼 — 제목 레이블과 자식 항목들을 그룹핑
+ * - 간단설명: 설정 섹션 래퍼 — Teal Bold 제목과 흰색 카드로 자식 항목들을 그룹핑
  * - 제약사항: children으로 SettingsItem 또는 SettingsToggle을 전달할 것
  * ---
  * @param title - 섹션 제목 텍스트
@@ -22,16 +21,15 @@ export interface SettingsSectionProps {
 
 export default function SettingsSection({ title, children }: SettingsSectionProps) {
   return (
-    <section>
-      <div className="px-gutter pt-lg pb-xs">
-        <span className="font-inter text-label-md text-on-surface-variant uppercase tracking-wide">
+    <section className="mb-lg">
+      <div className="px-gutter pb-sm">
+        <span className="font-plus-jakarta text-label-md font-bold text-primary">
           {title}
         </span>
       </div>
-      <div className="bg-surface-container-lowest rounded-lg overflow-hidden">
+      <div className="mx-gutter bg-white rounded-xl shadow-sm overflow-hidden divide-y divide-outline-variant">
         {children}
       </div>
-      <Separator className="mx-gutter" />
     </section>
   )
 }

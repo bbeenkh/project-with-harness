@@ -49,8 +49,12 @@ describe('ProfilePage', () => {
     expect(screen.getByText('보안')).toBeInTheDocument()
     expect(screen.getByText('비밀번호 변경')).toBeInTheDocument()
     expect(screen.getByText('생체 인증')).toBeInTheDocument()
-    expect(screen.getByText('로그아웃')).toBeInTheDocument()
-    expect(screen.getByText('계정 삭제')).toBeInTheDocument()
+  })
+
+  it('하단 로그아웃 버튼과 계정 삭제 링크가 렌더링된다', () => {
+    renderPage()
+    expect(screen.getByRole('button', { name: /로그아웃/ })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /계정 삭제/ })).toBeInTheDocument()
   })
 
   it('푸시 알림 토글을 클릭하면 상태가 변경된다', () => {

@@ -17,8 +17,8 @@ describe('SettingsSection 컴포넌트', () => {
     expect(screen.getByText('푸시 알림 항목')).toBeInTheDocument()
   })
 
-  it('섹션 제목에 on-surface-variant 색상 클래스가 적용된다', () => {
+  it('섹션 제목에 primary 색상 클래스가 적용된다', () => {
     render(<SettingsSection title="환경 설정"><div /></SettingsSection>)
-    expect(screen.getByText('환경 설정')).toHaveClass('text-on-surface-variant')
+    expect(screen.getByText('환경 설정')).toHaveClass('text-primary')
   })
 })
