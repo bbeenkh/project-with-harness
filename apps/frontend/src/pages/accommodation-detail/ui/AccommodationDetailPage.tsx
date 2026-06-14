@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useAccommodation } from '../../../entities/accommodation'
 import type { Booking } from '../../../entities/booking'
 import { BookingForm, BookingConfirmation } from '../../../features/booking'
-import Modal from '../../../shared/ui/primitive/Modal'
-import { Skeleton } from '../../../shared/ui/primitive'
+import { Modal, Skeleton } from '../../../shared/ui/primitive'
 import HeroImage from './HeroImage'
 import AmenitiesList from './AmenitiesList'
 import MapPlaceholder from './MapPlaceholder'
@@ -114,7 +113,13 @@ export default function AccommodationDetailPage() {
       />
 
       {/* 예약 모달 */}
-      <Modal open={bookingModalOpen} onOpenChange={setBookingModalOpen}>
+      <Modal
+        open={bookingModalOpen}
+        onOpenChange={(open) => {
+          setBookingModalOpen(open)
+          if (!open) setConfirmedBooking(null)
+        }}
+      >
         <Modal.Header>
           <Modal.Title>
             {confirmedBooking ? '예약 완료' : '예약 신청'}
