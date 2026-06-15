@@ -15,7 +15,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 2. 디자인: stitch mcp 사용해 화면, ui배치 구성
 - 반드시 존재하는 디자인 시스템 기반으로 제작할것, 새로 제작 필요할시는 별도 생성 질문후 진행
 
-3. 개발: Jira, confluence, stitch mcp 통해 작업사항 바탕으로 하여  작업내용 파악
+3. UI/퍼블리싱 작업 후 storybook에 스토리 생성
+- 작업에 사용될 각 컴포넌트마다 story 생성후 공유
+- 개발자는 story에 나온 ui를 검수한 뒤 피드백 제공, 피드백에 따라 ui 수정
+- 피드백 끝나면 제작한 컴포넌트를 바탕으로 기능 구현 시작
+
+4. 개발: Jira, confluence, stitch mcp 통해 작업사항 바탕으로 하여  작업내용 파악
 - 개발 과정은 red green refactor 원칙 기반 TDD로 작업 진행할 것
 - superpowers의 brainstorming skill 사용하여 기획 구체화 진행
 - 커밋 메세지: 내용은 전부 한글로 작성할것
