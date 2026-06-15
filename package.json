@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"pnpm -F frontend dev\" \"pnpm -F backend dev\"",
-    "build": "pnpm -r build",
-    "storybook": "pnpm -F frontend storybook",
+    "f:build": "pnpm -r build",
+    "f:storybook": "pnpm -F frontend storybook",
     "lint": "eslint apps/",
     "prepare": "husky"
   },
